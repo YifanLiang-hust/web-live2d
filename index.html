@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>汉赋智习室-教学视频AI一键生成+个性化AI教学小助手</title>
+    <link rel="stylesheet" href="live2d/css/live2d.css" />
+    <link rel="stylesheet" href="live2d/css/video-player.css" />
+    <link rel="stylesheet" href="live2d/css/markdown.css" />
+    <link rel="stylesheet" href="live2d/css/chat-history.css" />
+    <!-- KaTeX 支持 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" integrity="sha384-GvrOXuhMATgEsSwCs4smul74iXGOixntxDMMtUmRwQwRLVt3ohzJbsv6bOejuGRo" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" integrity="sha384-cpW21h6RZv/phavutF+AuVYrr+dA8xD9zs6FwLpaCct6O9ctzYFfFr4dgmgccOTx" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+</head>
+<body>
+    <!-- 添加视频播放器容器 -->
+    <div class="main-container">
+        <h1>视频播放器</h1>
+        <div class="content-container">
+            <div class="video-container">
+                <video id="video-player" controls crossorigin="anonymous">
+                    <source src="./live2d/video/二元一次方程组.mp4" type="video/mp4">
+                    您的浏览器不支持HTML5视频播放
+                </video>
+            </div>
+        </div>
+    </div>
+
+    <!-- 添加加载状态指示器 -->
+    <div id="live2d-loading" style="position:fixed; left:5px; bottom:10px; background:rgba(0,0,0,0.5); color:white; padding:5px; border-radius:4px; display:none;">
+        模型加载中...
+    </div>
+
+    <!-- Live2D 模型部分 -->
+    <div id="landlord" style="left:5px;bottom:0px;">
+        <div class="message" style="opacity:0"></div>
+
+         <!-- 添加聊天历史容器 -->
+        <div class="chat-history-container">
+            <div class="chat-title">
+                <span class="title-text">对话记录</span>
+                <span class="close-btn">&times;</span>
+            </div>
+            <ul class="chat-history"></ul>
+            <button class="clear-history-btn">清空对话</button>
+        </div> 
+
+        <canvas id="live2d" width="500" height="560" class="live2d"></canvas>
+        <div class="live_talk_input_body">
+            <div class="live_talk_input_text_body">
+                <input name="talk" type="text" class="live_talk_talk white_input" id="AIuserText" autocomplete="off" placeholder="你想问我什么问题呀？"/>
+                <button type="button" class="live_talk_send_btn" id="talk_send">发送</button>
+            </div>
+        </div>
+        <input name="live_talk" id="live_talk" value="1" type="hidden" />
+        <div class="live_ico_box">
+            <!-- <div class="live_ico_item type_text" id="showInfoBtn">信</div> -->
+            <div class="live_ico_item type_text" id="showHistoryBtn" title="查看对话记录">历</div>
+            <div class="live_ico_item type_text" id="showTalkBtn" title="开始聊天">聊</div>
+            <div class="live_ico_item type_text" id="switchModelBtn" title="更换模型">换</div>
+            <div class="live_ico_item type_text" id="hideButton" title="隐藏小助手">隐</div>
+            <input name="live_statu_val" id="live_statu_val" value="0" type="hidden" />
+        </div>
+    </div>
+    <div id="open_live2d">召唤汉赋小助手</div>
+    
+    <script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script>
+        // 定义全局变量
+        var message_Path = './live2d/';
+        
+        // 修复home_Path以支持不同端口
+        var home_Path = document.location.protocol +'//' + window.document.location.hostname + 
+            (window.document.location.port ? ':' + window.document.location.port : '') +'/';
+            
+        // 定义Live2D模型全局引用
+        var live2DModel = null;
+        
+        // 标记模型是否已经初始化
+        var modelInitialized = false;
+        
+        // 确保页面完全加载后显示模型
+        window.addEventListener('load', function() {
+            // 显示加载状态
+            $('#live2d-loading').fadeIn(200);
+            
+            // 首次加载可能需要更长时间，增加延迟
+            setTimeout(function() {
+                if (!modelInitialized) {
+                    initializeModel();
+                }
+            }, 1000);
+        });
+        
+        // 初始化模型的函数
+        function initializeModel() {
+            modelInitialized = true;
+            $('#live2d-loading').text('正在初始化模型...');
+            
+            try {
+                live2DModel = loadlive2d("live2d", message_Path + "model/histoire/model.json");
+                
+                // 设置全局模型引用
+                if (typeof setLive2DModel === 'function') {
+                    setLive2DModel(live2DModel);
+                }
+                
+                // 显示模型容器
+                setTimeout(function() {
+                    $('#live2d-loading').fadeOut(300);
+                    $('#landlord').fadeIn(400);
+                }, 1500);
+            } catch (e) {
+                console.error("模型加载失败:", e);
+                $('#live2d-loading').text('模型加载失败，请刷新页面重试');
+            }
+        }
+    </script>
+    <!-- 先加载jQuery库 -->
+    <script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/1.7.1/jquery.min.js"></script>
+    <!-- 然后是Live2D核心库 -->
+    <script type="text/javascript" src="live2d/js/live2d.js"></script>
+    <!-- 可选的解析器组件 -->
+    <script type="text/javascript" src="live2d/js/markdown-parser.js"></script>
+    <script type="text/javascript" src="live2d/js/latex-renderer.js"></script>
+    <!-- 然后是各个模块 -->
+    <script type="text/javascript" src="live2d/js/live2d-history.js"></script>
+    <script type="text/javascript" src="live2d/js/live2d-welcome.js"></script>
+    <script type="text/javascript" src="live2d/js/live2d-drag.js"></script>
+    <script type="text/javascript" src="live2d/js/live2d-hide.js"></script>
+    <!-- 最后是集成初始化脚本 -->
+    <!-- <script type="text/javascript" src="live2d/js/main.js"></script> -->
+    <script type="text/javascript" src="live2d/js/message.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+            delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "$", right: "$", display: false}
+            ],
+            throwOnError: false
+        });
+        });
+   </script>
+</body>
+</html>

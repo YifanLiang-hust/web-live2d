@@ -1,0 +1,165 @@
+/* 聊天历史记录样式 */
+.chat-history-container {
+  position: absolute;
+  width: 320px;
+  max-height: 300px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 8px;
+  padding: 10px;
+  top: -310px;
+  left: 0;
+  overflow-y: auto;
+  z-index: 10;
+  display: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.chat-history-container.visible {
+  display: block;
+}
+
+.chat-history-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-history-container::-webkit-scrollbar-track {
+  background: rgba(30, 30, 40, 0.5);
+  border-radius: 3px;
+}
+
+.chat-history-container::-webkit-scrollbar-thumb {
+  background: rgba(120, 120, 200, 0.5);
+  border-radius: 3px;
+}
+
+.chat-history-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(140, 140, 220, 0.7);
+}
+
+.chat-title {
+  font-size: 14px;
+  color: #ddd;
+  margin-bottom: 8px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-title .title-text {
+  font-weight: bold;
+  color: #fff;
+}
+
+.chat-title .close-btn {
+  color: #aaa;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0 5px;
+}
+
+.chat-title .close-btn:hover {
+  color: #fff;
+}
+
+.chat-history {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.chat-message {
+  margin-bottom: 10px;
+  animation: fadeIn 0.3s ease;
+}
+
+.chat-message.user {
+  text-align: right;
+}
+
+.chat-message.assistant {
+  text-align: left;
+}
+
+.chat-message .message-content {
+  display: inline-block;
+  max-width: 80%;
+  padding: 8px 12px;
+  border-radius: 12px;
+  margin-top: 4px;
+  word-wrap: break-word;
+  font-size: 13px;
+}
+
+.chat-message.user .message-content {
+  background-color: #4a6eb5;
+  color: white;
+  border-top-right-radius: 4px;
+}
+
+.chat-message.assistant .message-content {
+  background-color: #2d2d3f;
+  color: #f5f5f5;
+  border-top-left-radius: 4px;
+}
+
+.chat-message .sender {
+  font-size: 11px;
+  color: #bbb;
+  margin-bottom: 2px;
+}
+
+.clear-history-btn {
+  background-color: rgba(200, 50, 50, 0.6);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 3px 8px;
+  font-size: 11px;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background-color 0.2s;
+}
+
+.clear-history-btn:hover {
+  background-color: rgba(220, 70, 70, 0.8);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 聊天信息中的Markdown样式 */
+.message-content p {
+  margin: 5px 0;
+}
+
+.message-content code {
+  background-color: rgba(30, 30, 50, 0.6);
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-family: monospace;
+  font-size: 90%;
+}
+
+.message-content pre {
+  background-color: rgba(20, 20, 35, 0.8);
+  padding: 8px;
+  border-radius: 5px;
+  overflow-x: auto;
+  margin: 8px 0;
+}
+
+.message-content strong {
+  font-weight: bold;
+  color: #ffa;
+}
+
+.message-content em {
+  font-style: italic;
+  color: #c9c;
+}

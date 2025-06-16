@@ -1,0 +1,34 @@
+{
+    "mouseover": [
+        {
+            "selector": "#showInfoBtn",
+            "text": ["查看最新吐槽和站内信息"]
+        },
+		{
+            "selector": "#showTalkBtn",
+            "text": ["要问我什么问题呀？"]
+        },
+		{
+            "selector": "#hideButton",
+            "text": ["希望我们还能再见面！"]
+        },
+		{
+            "selector": "#switchModelBtn",
+            "text": ["你喜欢其他模型吗？"]
+        },
+		{
+            "selector": ".itemarticle-tips a",
+            "text": ["要看看 {text} 么？"]
+        },
+        {
+            "selector": ".searchbox",
+            "text": ["在找什么东西呢，需要帮忙吗？"]
+        }
+    ],
+    "click": [
+        {
+            "selector": "#landlord #live2d",
+            "text": ["需要我给你提供帮助吗？"]
+        }
+    ]
+}

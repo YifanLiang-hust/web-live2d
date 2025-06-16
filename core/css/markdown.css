@@ -1,0 +1,215 @@
+/* Markdown 样式支持 */
+.message {
+  line-height: 1.5;
+  text-align: left !important;
+  overflow-y: auto !important;
+  max-height: 200px !important;
+  padding: 10px !important;
+  font-size: 14px !important;
+}
+
+/* 段落样式 */
+.message p {
+  margin: 8px 0;
+  text-align: left;
+  line-height: 1.6;
+}
+
+/* 代码块 */
+.message .code-block {
+  background-color: rgba(30, 30, 50, 0.8);
+  padding: 10px;
+  border-radius: 4px;
+  font-family: 'Courier New', Courier, monospace;
+  white-space: pre-wrap;
+  margin: 10px 0;
+  color: #eee;
+  font-size: 12px;
+  overflow-x: auto;
+}
+
+/* 行内代码 */
+.message code {
+  background-color: rgba(30, 30, 50, 0.5);
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 90%;
+  color: #f1c40f;
+}
+
+/* 标题样式 */
+.message h1 {
+  font-size: 18px;
+  margin: 10px 0 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+  padding-bottom: 5px;
+  color: #ffcc66;
+}
+
+.message h2 {
+  font-size: 16px;
+  margin: 8px 0 6px 0;
+  color: #98c379;
+}
+
+.message h3 {
+  font-size: 14px;
+  margin: 6px 0;
+  color: #61afef;
+}
+
+/* 列表样式 */
+.message ul, .message ol {
+  padding-left: 20px;
+  margin: 8px 0;
+}
+
+.message li {
+  margin: 4px 0;
+  list-style-position: outside;
+}
+
+.message ul li {
+  list-style-type: disc;
+}
+
+.message ol li {
+  list-style-type: decimal;
+}
+
+/* 引用块 */
+.message blockquote {
+  border-left: 3px solid rgba(200, 200, 255, 0.6);
+  padding: 4px 10px;
+  margin: 8px 0 8px 5px;
+  color: rgba(255, 255, 255, 0.8);
+  font-style: italic;
+  background-color: rgba(50, 50, 70, 0.4);
+}
+
+/* 链接 */
+.message a {
+  color: #56b6c2;
+  text-decoration: underline;
+}
+
+.message a:hover {
+  color: #78dce8;
+  text-decoration: none;
+}
+
+/* 表格 */
+.message table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.message th, .message td {
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 6px 8px;
+}
+
+.message th {
+  background-color: rgba(100,100,150,0.3);
+  font-weight: bold;
+}
+
+/* 数学公式 */
+.message .math {
+  font-style: italic;
+  color: #f8c555;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+/* 分隔线 */
+.message hr {
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.3);
+  margin: 12px 0;
+}
+
+/* 强调 */
+.message em {
+  font-style: italic;
+  color: #c678dd;
+}
+
+.message strong {
+  font-weight: bold;
+  color: #ff8b92;
+  text-shadow: 0 0 2px rgba(255, 139, 146, 0.3);
+}
+
+/* 图片 */
+.message img {
+  max-width: 100%;
+  height: auto;
+  margin: 10px 0;
+  border-radius: 4px;
+}
+
+/* 滚动条样式 */
+.message::-webkit-scrollbar {
+  width: 6px;
+}
+
+.message::-webkit-scrollbar-track {
+  background: rgba(30, 30, 40, 0.5);
+  border-radius: 3px;
+}
+
+.message::-webkit-scrollbar-thumb {
+  background: rgba(120, 120, 200, 0.5);
+  border-radius: 3px;
+}
+
+.message::-webkit-scrollbar-thumb:hover {
+  background: rgba(140, 140, 220, 0.7);
+}
+
+/* 添加对LaTeX公式的额外支持 */
+
+/* 调整KaTeX容器在消息框内的样式 */
+.message .katex {
+  font-size: 1.1em;
+}
+
+.message .katex-display {
+  margin: 10px 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  text-align: center;
+}
+
+/* 当公式过长时允许横向滚动 */
+.message .katex-display > .katex {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 3px 0;
+}
+
+/* 调整行内公式与文本的对齐 */
+.message .katex-inline {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0 3px;
+}
+
+/* 当KaTeX无法加载时的后备样式 */
+.message span[data-latex],
+.message div[data-latex] {
+  font-family: 'Times New Roman', Times, serif;
+  font-style: italic;
+  color: #ffd700;
+}
+
+.message div[data-latex] {
+  text-align: center;
+  margin: 10px 0;
+  padding: 5px;
+  border-left: 3px solid #ffd700;
+  border-right: 3px solid #ffd700;
+}

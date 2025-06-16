@@ -1,0 +1,252 @@
+#landlord {
+    user-select: none;
+    position: fixed;
+    left: 5px;
+    bottom: 0;
+    width: 250px;
+    height: 280px;
+    z-index: 10000;
+    font-size: 0;
+    display:block;
+}
+#open_live2d{
+    border: 2px solid rgba(75,127,199,0.9);
+    border-radius: 2px;
+    background-color: rgba(74, 59, 114,0.9);
+    padding:2px 10px;
+    color:#fff;
+    height:24px;
+    line-height:24px;
+    font-size:12px;
+    position:fixed;
+    right:5px;
+    bottom:5px;
+    z-index:10000;
+    cursor:pointer;
+    display:none;
+}
+#showInfoBtn{
+    display:none;
+}
+#live2d {
+    width: 250px;
+    height: 280px;
+    position: relative;
+    z-index:3;
+}
+
+.message {
+    opacity: 0;
+    color: #fff;
+    box-sizing: border-box;
+    width: 250px;
+    height: auto;
+    margin: auto;
+    padding: 7px;
+    bottom: 280px;
+    left: 0px;
+    text-align: center;
+    border: 2px solid rgba(75,127,199,0.9);
+    border-radius: 5px;
+    background-color: rgba(74, 59, 114,0.9);
+    font-size: 13px;
+    font-weight: 400;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    overflow: hidden;
+    position: absolute;
+}
+.live_talk_input_body{
+    position:absolute;
+    bottom:15px;
+    left:0;
+    width:250px;
+    display:none;
+    z-index:4;
+}
+.live_talk_input_text_body{
+    width:250px;
+    box-sizing:border-box;
+    height:28px;
+    border: 2px solid rgb(223, 179, 241);
+    border-radius: 5px;
+    background-color: rgba(74, 59, 114,0.9);
+    position: relative;
+    display: flex; /* 使用flex布局 */
+    justify-content: space-between; /* 两端对齐 */
+    align-items: center; /* 垂直居中 */
+}
+.live_talk_input_name_body{
+    width:70px;
+    box-sizing:border-box;
+    height:24px;
+    border: 2px solid rgb(223, 179, 241);
+    border-radius: 5px;
+    background-color: rgba(74, 59, 114,0.9);
+    margin-bottom:3px;
+}
+.live_talk_name{
+    background-color:transparent;
+    border:0px;
+    margin:0;
+    width:66px;
+    height:20px;
+    line-height:20px;
+    text-align:center;
+    font-size:12px;
+    color:#fff;
+    outline:none;
+    box-sizing:border-box;
+    padding:0 3px;
+}
+.live_talk_talk{
+    background-color:transparent;
+    border:0px;
+    margin:0;
+    width:200px;
+    height:24px;
+    line-height:24px;
+    text-align:left;
+    font-size:12px;
+    color:#fff;
+    outline:none;
+    box-sizing:border-box;
+    padding:0 3px;
+    flex: 1; /* 让输入框占据剩余空间 */
+}
+.live_talk_send_btn{
+    background-color: rgba(74, 59, 114, 0.9);
+    color:#fff;
+    border: 1px solid #fff;
+    border-radius: 3px;
+    cursor:pointer;
+    padding: 0 10px; /* 增加水平内边距 */
+    height: 22px;
+    line-height: 22px;
+    font-size: 12px;
+    margin: 0 3px; /* 调整外边距 */
+    display: block; /* 块级元素 */
+    white-space: nowrap; /* 防止文本换行 */
+    min-width: 40px; /* 确保按钮有最小宽度 */
+    text-align: center; /* 文本居中 */
+}
+.live_talk_send_btn:hover {
+    background-color: rgba(119, 97, 173, 0.9);
+}
+.white_input:-moz-placeholder {
+    color: #E4E4E4;  
+    opacity: 1;
+}
+ 
+.white_input::-moz-placeholder {
+    color: #E4E4E4;
+    opacity: 1;
+}
+ 
+.white_input:-ms-input-placeholder {
+    color: #E4E4E4;
+}
+ 
+.white_input::-webkit-input-placeholder {
+    color: #E4E4E4;
+}
+
+.hide-button {
+    position: absolute;
+    top: 10px;
+    right: 0;
+    display: none;
+    overflow: hidden;
+    width: 60px;
+    height: 20px;
+    border: 1px solid rgba(255,137,255,.4);
+    border-radius: 12px;
+    background: rgba(255,137,255,.2);
+    box-shadow: 0 3px 15px 2px rgba(255,137,255,.4);
+    text-align: center;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.hide-button:hover {
+    border: 1px solid #f4a7b9;
+    background: #f4f6f8;
+}
+.live_ico_box{
+    width:15px;
+    position:absolute;
+    z-index:5;
+    right:0;
+    top:10px;
+    opacity:0.9;
+}
+.live_ico_item{
+    width:15px;
+    height: 20px;
+    cursor:pointer;
+    background-position:center center;
+    background-repeat:no-repeat;
+    background-size:15px;
+}
+
+@media (max-width: 860px) {
+    #landlord {
+        display: none!important;
+    }
+}
+
+/* 将原始图标类型修改为文本类型，但保持原有布局 */
+.live_ico_item.type_text {
+    /* 保持原有图标的尺寸和布局 */
+    width: 30px;
+    height: 30px;
+    /* 圆形背景 */
+    border-radius: 15px;
+    background-color: rgba(74, 59, 114, 0.9);
+    border: 2px solid rgb(223, 179, 241);
+    /* 文本居中 */
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+    line-height: 30px;
+    /* 鼠标样式 */
+    cursor: pointer;
+    /* 过渡效果 */
+    transition: all 0.3s ease;
+}
+
+/* 鼠标悬停效果 */
+.live_ico_item.type_text:hover {
+    background-color: rgba(119, 97, 173, 0.9);
+}
+
+/* 隐藏原始背景图片 */
+.live_ico_item.type_info,
+.live_ico_item.type_talk,
+.live_ico_item.type_music,
+.live_ico_item.type_quit {
+    background-image: none !important;
+}
+
+/* 确保图标盒子样式保持不变 */
+.live_ico_box {
+    position: absolute;
+    bottom: 15px;
+    right: 0px;
+    width: auto;
+}
+
+/* 加载状态指示器样式 */
+#live2d-loading {
+    position: fixed;
+    left: 5px;
+    bottom: 10px;
+    background: rgba(74, 59, 114, 0.8);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    z-index: 10001;
+    border: 1px solid rgb(223, 179, 241);
+}
+
