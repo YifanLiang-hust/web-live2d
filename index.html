@@ -3,14 +3,14 @@
 <head>
     <meta charset="utf-8">
     <title>汉赋智习室-教学视频AI一键生成+个性化AI教学小助手</title>
-    <link rel="stylesheet" href="live2d/css/live2d.css" />
-    <link rel="stylesheet" href="live2d/css/video-player.css" />
-    <link rel="stylesheet" href="live2d/css/markdown.css" />
-    <link rel="stylesheet" href="live2d/css/chat-history.css" />
-    <!-- KaTeX 支持 -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" integrity="sha384-GvrOXuhMATgEsSwCs4smul74iXGOixntxDMMtUmRwQwRLVt3ohzJbsv6bOejuGRo" crossorigin="anonymous">
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" integrity="sha384-cpW21h6RZv/phavutF+AuVYrr+dA8xD9zs6FwLpaCct6O9ctzYFfFr4dgmgccOTx" crossorigin="anonymous"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="src/css/live2d.css" />
+    <link rel="stylesheet" href="src/css/video-player.css" />
+    <link rel="stylesheet" href="src/css/markdown.css" />
+    <link rel="stylesheet" href="src/css/chat-history.css" />
+    <!-- 添加KaTeX库及其auto-render插件 -->
+    <link rel="stylesheet" href="src/lib/katex/katex.min.css">
+    <script src="src/lib/katex/katex.min.js"></script>
+    <script src="src/lib/katex/contrib/auto-render.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 </head>
 <body>
@@ -20,7 +20,7 @@
         <div class="content-container">
             <div class="video-container">
                 <video id="video-player" controls crossorigin="anonymous">
-                    <source src="./live2d/video/二元一次方程组.mp4" type="video/mp4">
+                    <source src="./src/video/demo.mp4" type="video/mp4">
                     您的浏览器不支持HTML5视频播放
                 </video>
             </div>
@@ -55,7 +55,6 @@
         </div>
         <input name="live_talk" id="live_talk" value="1" type="hidden" />
         <div class="live_ico_box">
-            <!-- <div class="live_ico_item type_text" id="showInfoBtn">信</div> -->
             <div class="live_ico_item type_text" id="showHistoryBtn" title="查看对话记录">历</div>
             <div class="live_ico_item type_text" id="showTalkBtn" title="开始聊天">聊</div>
             <div class="live_ico_item type_text" id="switchModelBtn" title="更换模型">换</div>
@@ -68,7 +67,7 @@
     <script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/1.7.1/jquery.min.js"></script>
     <script>
         // 定义全局变量
-        var message_Path = './live2d/';
+        var src_Path = './src/';
         
         // 修复home_Path以支持不同端口
         var home_Path = document.location.protocol +'//' + window.document.location.hostname + 
@@ -84,22 +83,17 @@
         window.addEventListener('load', function() {
             // 显示加载状态
             $('#live2d-loading').fadeIn(200);
-            
-            // 首次加载可能需要更长时间，增加延迟
-            setTimeout(function() {
-                if (!modelInitialized) {
-                    initializeModel();
-                }
-            }, 1000);
+            if (!modelInitialized) {
+                initializeModel();
+            }
         });
         
         // 初始化模型的函数
         function initializeModel() {
             modelInitialized = true;
-            $('#live2d-loading').text('正在初始化模型...');
             
             try {
-                live2DModel = loadlive2d("live2d", message_Path + "model/histoire/model.json");
+                live2DModel = loadlive2d("live2d", src_Path + "model/histoire/model.json");
                 
                 // 设置全局模型引用
                 if (typeof setLive2DModel === 'function') {
@@ -120,29 +114,41 @@
     <!-- 先加载jQuery库 -->
     <script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/1.7.1/jquery.min.js"></script>
     <!-- 然后是Live2D核心库 -->
-    <script type="text/javascript" src="live2d/js/live2d.js"></script>
+    <script type="text/javascript" src="src/js/live2d.js"></script>
     <!-- 可选的解析器组件 -->
-    <script type="text/javascript" src="live2d/js/markdown-parser.js"></script>
-    <script type="text/javascript" src="live2d/js/latex-renderer.js"></script>
-    <!-- 然后是各个模块 -->
-    <script type="text/javascript" src="live2d/js/live2d-history.js"></script>
-    <script type="text/javascript" src="live2d/js/live2d-welcome.js"></script>
-    <script type="text/javascript" src="live2d/js/live2d-drag.js"></script>
-    <script type="text/javascript" src="live2d/js/live2d-hide.js"></script>
-    <!-- 最后是集成初始化脚本 -->
-    <!-- <script type="text/javascript" src="live2d/js/main.js"></script> -->
-    <script type="text/javascript" src="live2d/js/message.js"></script>
+    <script type="text/javascript" src="src/js/markdown-parser.js"></script>
+    <script type="text/javascript" src="src/js/latex-renderer.js"></script>
+    <!-- 然后是依赖较少的基础模块 -->
+    <!-- <script type="text/javascript" src="src/js/live2d-message.js"></script> -->
+    <!-- <script type="text/javascript" src="src/js/live2d-state.js"></script> -->
+    <script type="text/javascript" src="src/js/live2d-history.js"></script>
+    <!-- 然后是功能模块 -->
+    <script type="text/javascript" src="src/js/live2d-welcome.js"></script>
+    <script type="text/javascript" src="src/js/live2d-model.js"></script>
+    <script type="text/javascript" src="src/js/live2d-drag.js"></script>
+    <script type="text/javascript" src="src/js/live2d-hide.js"></script>
+    <script type="text/javascript" src="src/js/live2d-chat.js"></script>
+    <script type="text/javascript" src="src/js/qwen.js"></script>
+    <!-- 初始化模块应该在其他模块之后 -->
+    <!-- <script type="text/javascript" src="src/js/live2d-init.js"></script> -->
+    <!-- 最后是主脚本 -->
+    <script type="text/javascript" src="src/js/main.js"></script>
 
+    <!-- KaTeX初始化 (确保KaTeX完全加载) -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-        renderMathInElement(document.body, {
-            delimiters: [
-            {left: "$$", right: "$$", display: true},
-            {left: "$", right: "$", display: false}
-            ],
-            throwOnError: false
+            if (typeof renderMathInElement === 'function') {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        {left: "$$", right: "$$", display: true},
+                        {left: "$", right: "$", display: false}
+                    ],
+                    throwOnError: false
+                });
+            } else {
+                console.error("KaTeX renderMathInElement 函数未加载");
+            }
         });
-        });
-   </script>
+    </script>
 </body>
 </html>

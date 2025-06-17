@@ -69,7 +69,7 @@ window.Live2DDrag = (function() {
             document.onmousemove = handleMouseMove;
             document.onmouseup = handleMouseUp;
             
-            console.log("开始拖拽", {moveX, moveY, moveBottom, moveLeft});
+            // console.log("开始拖拽", {moveX, moveY, moveBottom, moveLeft});
         });
     }
     
@@ -88,7 +88,7 @@ window.Live2DDrag = (function() {
             dragElement.style.left = x + "px";
             dragElement.style.bottom = y + "px";
             
-            console.log("拖拽中", {x, y});
+            // console.log("拖拽中", {x, y});
         }
     }
     
@@ -101,7 +101,7 @@ window.Live2DDrag = (function() {
             let newLeft = parseInt(dragElement.style.left);
             let newBottom = parseInt(dragElement.style.bottom);
             
-            console.log("拖拽结束，保存新位置", {newLeft, newBottom});
+            // console.log("拖拽结束，保存新位置", {newLeft, newBottom});
             
             sessionStorage.setItem("historywidth", newLeft);
             sessionStorage.setItem("historyheight", newBottom);
@@ -123,13 +123,13 @@ window.Live2DDrag = (function() {
      * 从会话存储中恢复位置
      */
     function restorePosition() {
-        console.log("恢复位置...");
+        // console.log("恢复位置...");
         
         // 获取保存的位置
         let landL = sessionStorage.getItem("historywidth");
         let landB = sessionStorage.getItem("historyheight");
         
-        console.log("存储的位置:", {landL, landB});
+        // console.log("存储的位置:", {landL, landB});
         
         // 检查值是否有效
         if (landL === null || landB === null || isNaN(parseInt(landL)) || isNaN(parseInt(landB))) {
@@ -146,7 +146,7 @@ window.Live2DDrag = (function() {
             'bottom': landB + 'px'
         });
         
-        console.log("应用新位置:", {landL, landB});
+        // console.log("应用新位置:", {landL, landB});
     }
     
     // 公开API

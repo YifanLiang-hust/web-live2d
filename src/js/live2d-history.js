@@ -9,11 +9,6 @@ window.ChatHistory = {
      * 初始化聊天历史功能
      */
     init: function() {
-        // 添加一个显示历史记录的按钮
-        // if (!$('#showHistoryBtn').length) {
-        //     // 在按钮区域添加历史按钮
-        //     $('.live_ico_box').prepend('<div class="live_ico_item type_text" id="showHistoryBtn" title="查看对话记录">历</div>');
-        // }
         
         // 绑定显示/隐藏历史记录的点击事件
         $('#showHistoryBtn').on('click', function() {

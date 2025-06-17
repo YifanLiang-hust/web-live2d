@@ -44,4 +44,4 @@ yarn-error.log*
 /secrets/
 
 # 废弃的代码
-/core/js/old
+/src/js/old

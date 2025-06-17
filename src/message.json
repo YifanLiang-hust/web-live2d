@@ -1,8 +1,8 @@
 {
     "mouseover": [
         {
-            "selector": "#showInfoBtn",
-            "text": ["查看最新吐槽和站内信息"]
+            "selector": "#showHistoryBtn",
+            "text": ["要看看我们的对话记录吗？"]
         },
 		{
             "selector": "#showTalkBtn",

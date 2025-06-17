@@ -31,11 +31,13 @@ window.Live2DHide = (function() {
     function bindHideShowEvents() {
         // 隐藏按钮点击事件
         $('#hideButton').on('click', function() {
+            console.log("隐藏按钮被点击");
             hideModel();
         });
         
         // 显示按钮点击事件
         $('#open_live2d').on('click', function() {
+            console.log("显示按钮被点击");
             showModel();
         });
     }

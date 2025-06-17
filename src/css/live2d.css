@@ -220,13 +220,6 @@
     background-color: rgba(119, 97, 173, 0.9);
 }
 
-/* 隐藏原始背景图片 */
-.live_ico_item.type_info,
-.live_ico_item.type_talk,
-.live_ico_item.type_music,
-.live_ico_item.type_quit {
-    background-image: none !important;
-}
 
 /* 确保图标盒子样式保持不变 */
 .live_ico_box {
