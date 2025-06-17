@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>汉赋智习室-教学视频AI一键生成+个性化AI教学小助手</title>
+    <title>汉赋智习室-个性化AI教学助手</title>
     <link rel="stylesheet" href="src/css/live2d.css" />
     <link rel="stylesheet" href="src/css/video-player.css" />
     <link rel="stylesheet" href="src/css/markdown.css" />
@@ -13,19 +13,8 @@
     <script src="src/lib/katex/contrib/auto-render.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 </head>
+
 <body>
-    <!-- 添加视频播放器容器 -->
-    <div class="main-container">
-        <h1>视频播放器</h1>
-        <div class="content-container">
-            <div class="video-container">
-                <video id="video-player" controls crossorigin="anonymous">
-                    <source src="./src/video/demo.mp4" type="video/mp4">
-                    您的浏览器不支持HTML5视频播放
-                </video>
-            </div>
-        </div>
-    </div>
 
     <!-- 添加加载状态指示器 -->
     <div id="live2d-loading" style="position:fixed; left:5px; bottom:10px; background:rgba(0,0,0,0.5); color:white; padding:5px; border-radius:4px; display:none;">
@@ -65,52 +54,7 @@
     <div id="open_live2d">召唤汉赋小助手</div>
     
     <script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script>
-        // 定义全局变量
-        var src_Path = './src/';
-        
-        // 修复home_Path以支持不同端口
-        var home_Path = document.location.protocol +'//' + window.document.location.hostname + 
-            (window.document.location.port ? ':' + window.document.location.port : '') +'/';
-            
-        // 定义Live2D模型全局引用
-        var live2DModel = null;
-        
-        // 标记模型是否已经初始化
-        var modelInitialized = false;
-        
-        // 确保页面完全加载后显示模型
-        window.addEventListener('load', function() {
-            // 显示加载状态
-            $('#live2d-loading').fadeIn(200);
-            if (!modelInitialized) {
-                initializeModel();
-            }
-        });
-        
-        // 初始化模型的函数
-        function initializeModel() {
-            modelInitialized = true;
-            
-            try {
-                live2DModel = loadlive2d("live2d", src_Path + "model/histoire/model.json");
-                
-                // 设置全局模型引用
-                if (typeof setLive2DModel === 'function') {
-                    setLive2DModel(live2DModel);
-                }
-                
-                // 显示模型容器
-                setTimeout(function() {
-                    $('#live2d-loading').fadeOut(300);
-                    $('#landlord').fadeIn(400);
-                }, 1500);
-            } catch (e) {
-                console.error("模型加载失败:", e);
-                $('#live2d-loading').text('模型加载失败，请刷新页面重试');
-            }
-        }
-    </script>
+    
     <!-- 先加载jQuery库 -->
     <script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/1.7.1/jquery.min.js"></script>
     <!-- 然后是Live2D核心库 -->

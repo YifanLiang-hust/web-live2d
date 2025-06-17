@@ -1,3 +1,4 @@
+var src_Path = "./src/";
 var userAgent = window.navigator.userAgent.toLowerCase();
 console.log(userAgent);
 
@@ -51,9 +52,6 @@ if (typeof Live2DDrag !== 'undefined') {
 function showMessage(text, timeout){
     if(Array.isArray(text)) text = text[Math.floor(Math.random() * text.length + 1)-1];
     $('.message').stop();
-    
-    // 调试用：显示原始文本
-    console.log("显示消息原始文本:", text);
     
     // 使用Markdown解析器解析文本
     if (typeof markdownParser !== 'undefined' && typeof markdownParser.parse === 'function') {
