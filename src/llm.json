@@ -1,0 +1,326 @@
+{
+  "models": [
+    {
+      "id": "qwen3-8b",
+      "name": "qwen/qwen3-8b:free",
+      "description": "通义千问3-8B模型"
+    },
+    {
+      "id": "qwen3-14b",
+      "name": "qwen/qwen3-14b:free",
+      "description": "通义千问3-14B模型"
+    },
+    {
+      "id": "qwen3-30b-a3b",
+      "name": "qwen/qwen3-30b-a3b:free", 
+      "description": "通义千问3-30B模型"
+    },
+    {
+      "id": "qwen3-32b",
+      "name": "qwen/qwen3-32b:free",
+      "description": "通义千问3-32B模型"
+    },
+    {
+      "id": "qwen3-235b-a22b",
+      "name": "qwen/qwen3-235b-a22b:free",
+      "description": "通义千问3-235B大模型"
+    },
+    {
+      "id": "qwen-2.5-72b",
+      "name": "qwen/qwen-2.5-72b-instruct:free",
+      "description": "通义千问2.5-72B模型"
+    },
+    {
+      "id": "qwen-2.5-coder-32b",
+      "name": "qwen/qwen-2.5-coder-32b-instruct:free",
+      "description": "通义千问2.5编程32B模型"
+    },
+    {
+      "id": "qwen2.5-vl-7b",
+      "name": "qwen/qwen-2.5-vl-7b-instruct:free",
+      "description": "通义千问2.5视觉7B模型"
+    },
+    {
+      "id": "qwen2.5-vl-32b",
+      "name": "qwen/qwen2.5-vl-32b-instruct:free",
+      "description": "通义千问2.5视觉32B模型"
+    },
+    {
+      "id": "qwen2.5-vl-72b",
+      "name": "qwen/qwen2.5-vl-72b-instruct:free",
+      "description": "通义千问2.5视觉72B模型"
+    },
+    {
+      "id": "qwq-32b",
+      "name": "qwen/qwq-32b:free",
+      "description": "QWQ-32B模型"
+    },
+    {
+      "id": "qwq-32b-arliai",
+      "name": "arliai/qwq-32b-arliai-rpr-v1:free",
+      "description": "QWQ-32B-ArliAI模型"
+    },
+    {
+      "id": "llama-3.1-8b",
+      "name": "meta-llama/llama-3.1-8b-instruct:free",
+      "description": "Llama 3.1-8B模型"
+    },
+    {
+      "id": "llama-3.2-1b",
+      "name": "meta-llama/llama-3.2-1b-instruct:free",
+      "description": "Llama 3.2-1B模型"
+    },
+    {
+      "id": "llama-3.2-3b",
+      "name": "meta-llama/llama-3.2-3b-instruct:free",
+      "description": "Llama 3.2-3B模型"
+    },
+    {
+      "id": "llama-3.2-11b-vision",
+      "name": "meta-llama/llama-3.2-11b-vision-instruct:free",
+      "description": "Llama 3.2-11B视觉模型"
+    },
+    {
+      "id": "llama-3.3-8b",
+      "name": "meta-llama/llama-3.3-8b-instruct:free",
+      "description": "Llama 3.3-8B模型"
+    },
+    {
+      "id": "llama-3.3-70b",
+      "name": "meta-llama/llama-3.3-70b-instruct:free",
+      "description": "Llama 3.3-70B模型"
+    },
+    {
+      "id": "llama-4-scout",
+      "name": "meta-llama/llama-4-scout:free",
+      "description": "Llama 4 Scout模型"
+    },
+    {
+      "id": "llama-4-maverick",
+      "name": "meta-llama/llama-4-maverick:free",
+      "description": "Llama 4 Maverick模型"
+    },
+    {
+      "id": "gemma-3-1b",
+      "name": "google/gemma-3-1b-it:free",
+      "description": "Gemma 3-1B模型"
+    },
+    {
+      "id": "gemma-3-4b",
+      "name": "google/gemma-3-4b-it:free",
+      "description": "Gemma 3-4B模型"
+    },
+    {
+      "id": "gemma-3-12b",
+      "name": "google/gemma-3-12b-it:free",
+      "description": "Gemma 3-12B模型"
+    },
+    {
+      "id": "gemma-3-27b",
+      "name": "google/gemma-3-27b-it:free",
+      "description": "Gemma 3-27B模型"
+    },
+    {
+      "id": "gemma-3n-e4b",
+      "name": "google/gemma-3n-e4b-it:free",
+      "description": "Gemma 3N-E4B模型"
+    },
+    {
+      "id": "gemma-2-9b",
+      "name": "google/gemma-2-9b-it:free",
+      "description": "Gemma 2-9B模型"
+    },
+    {
+      "id": "gemini-2.0-flash",
+      "name": "google/gemini-2.0-flash-exp:free",
+      "description": "Gemini 2.0 Flash模型"
+    },
+    {
+      "id": "gemini-2.5-pro",
+      "name": "google/gemini-2.5-pro-exp-03-25",
+      "description": "Gemini 2.5 Pro模型"
+    },
+    {
+      "id": "deepseek-chat",
+      "name": "deepseek/deepseek-chat:free",
+      "description": "DeepSeek Chat模型"
+    },
+    {
+      "id": "deepseek-v3-base",
+      "name": "deepseek/deepseek-v3-base:free",
+      "description": "DeepSeek V3 Base模型"
+    },
+    {
+      "id": "deepseek-chat-v3",
+      "name": "deepseek/deepseek-chat-v3-0324:free",
+      "description": "DeepSeek Chat V3模型"
+    },
+    {
+      "id": "deepseek-r1",
+      "name": "deepseek/deepseek-r1:free",
+      "description": "DeepSeek R1模型"
+    },
+    {
+      "id": "deepseek-r1-0528",
+      "name": "deepseek/deepseek-r1-0528:free",
+      "description": "DeepSeek R1-0528模型"
+    },
+    {
+      "id": "deepseek-r1-0528-qwen3-8b",
+      "name": "deepseek/deepseek-r1-0528-qwen3-8b:free",
+      "description": "DeepSeek R1-0528基于qwen3-8b模型"
+    },
+    {
+      "id": "deepseek-r1-distill-qwen-14b",
+      "name": "deepseek/deepseek-r1-distill-qwen-14b:free",
+      "description": "DeepSeek R1-Distill-Qwen-14B模型"
+    },
+    {
+      "id": "deepseek-r1-distill-qwen-32b",
+      "name": "deepseek/deepseek-r1-distill-qwen-32b:free",
+      "description": "DeepSeek R1-Distill-Qwen-32B模型"
+    },
+    {
+      "id": "deepseek-r1-distill-llama-70b",
+      "name": "deepseek/deepseek-r1-distill-llama-70b:free",
+      "description": "DeepSeek R1-Distill-Llama-70B模型"
+    },
+    {
+      "id": "deepseek-r1t-chimera",
+      "name": "tngtech/deepseek-r1t-chimera:free",
+      "description": "DeepSeek R1T Chimera模型"
+    },
+    {
+      "id": "mistral-7b",
+      "name": "mistralai/mistral-7b-instruct:free",
+      "description": "Mistral 7B模型"
+    },
+    {
+      "id": "mistral-small-24b-2501",
+      "name": "mistralai/mistral-small-24b-instruct-2501:free",
+      "description": "Mistral Small 24B-2501模型"
+    },
+    {
+      "id": "mistral-small-3.1-24b",
+      "name": "mistralai/mistral-small-3.1-24b-instruct:free",
+      "description": "Mistral Small 3.1-24B模型"
+    },
+    {
+      "id": "mistral-nemo",
+      "name": "mistralai/mistral-nemo:free",
+      "description": "Mistral Nemo模型"
+    },
+    {
+      "id": "devstral-small",
+      "name": "mistralai/devstral-small:free",
+      "description": "Devstral Small模型"
+    },
+    {
+      "id": "glm-4-32b",
+      "name": "thudm/glm-4-32b:free",
+      "description": "GLM-4-32B模型"
+    },
+    {
+      "id": "glm-z1-32b",
+      "name": "thudm/glm-z1-32b:free",
+      "description": "GLM-Z1-32B模型"
+    },
+    {
+      "id": "mai-ds-r1",
+      "name": "microsoft/mai-ds-r1:free",
+      "description": "微软MAI-DS-R1模型"
+    },
+    {
+      "id": "phi-4-reasoning",
+      "name": "microsoft/phi-4-reasoning:free",
+      "description": "Phi-4-Reasoning模型"
+    },
+    {
+      "id": "phi-4-reasoning-plus",
+      "name": "microsoft/phi-4-reasoning-plus:free",
+      "description": "Phi-4-Reasoning-Plus模型"
+    },
+    {
+      "id": "kimi-dev-72b",
+      "name": "moonshotai/kimi-dev-72b:free",
+      "description": "KIMI-Dev-72B模型"
+    },
+    {
+      "id": "kimi-vl-a3b-thinking",
+      "name": "moonshotai/kimi-vl-a3b-thinking:free",
+      "description": "KIMI-VL视觉思考模型"
+    },
+    {
+      "id": "internvl3-2b",
+      "name": "opengvlab/internvl3-2b:free",
+      "description": "InternVL3-2B模型"
+    },
+    {
+      "id": "internvl3-14b",
+      "name": "opengvlab/internvl3-14b:free",
+      "description": "InternVL3-14B模型"
+    },
+    {
+      "id": "deephermes-3-mistral-24b",
+      "name": "nousresearch/deephermes-3-mistral-24b-preview:free",
+      "description": "DeepHermes-3-Mistral-24B模型"
+    },
+    {
+      "id": "deephermes-3-llama-3-8b",
+      "name": "nousresearch/deephermes-3-llama-3-8b-preview:free",
+      "description": "DeepHermes-3-Llama-3-8B模型"
+    },
+    {
+      "id": "dolphin3-r1-mistral-24b",
+      "name": "cognitivecomputations/dolphin3.0-r1-mistral-24b:free",
+      "description": "Dolphin3-R1-Mistral-24B模型"
+    },
+    {
+      "id": "dolphin3-mistral-24b",
+      "name": "cognitivecomputations/dolphin3.0-mistral-24b:free",
+      "description": "Dolphin3-Mistral-24B模型"
+    },
+    {
+      "id": "shisa-v2-llama3.3-70b",
+      "name": "shisa-ai/shisa-v2-llama3.3-70b:free",
+      "description": "Shisa-V2-Llama3.3-70B模型"
+    },
+    {
+      "id": "reka-flash-3",
+      "name": "rekaai/reka-flash-3:free",
+      "description": "Reka Flash 3模型"
+    },
+    {
+      "id": "olympiccoder-32b",
+      "name": "open-r1/olympiccoder-32b:free",
+      "description": "OlympicCoder-32B模型"
+    },
+    {
+      "id": "deepcoder-14b",
+      "name": "agentica-org/deepcoder-14b-preview:free",
+      "description": "DeepCoder-14B编程模型"
+    },
+    {
+      "id": "nemotron-super-49b",
+      "name": "nvidia/llama-3.3-nemotron-super-49b-v1:free",
+      "description": "NVIDIA Nemotron Super 49B模型"
+    },
+    {
+      "id": "nemotron-ultra-253b",
+      "name": "nvidia/llama-3.1-nemotron-ultra-253b-v1:free",
+      "description": "NVIDIA Nemotron Ultra 253B模型"
+    },
+    {
+      "id": "qwerky-72b",
+      "name": "featherless/qwerky-72b:free",
+      "description": "Qwerky 72B模型"
+    }
+  ],
+  "defaultModel": "qwen/qwen2.5-vl-72b-instruct:free",
+  "categories": {
+    "general": ["qwen3-14b", "llama-3.3-8b", "gemma-3-12b"],
+    "vision": ["qwen2.5-vl-32b", "llama-3.2-11b-vision", "kimi-vl-a3b-thinking"],
+    "coding": ["qwen-2.5-coder-32b", "deepcoder-14b", "olympiccoder-32b"],
+    "large": ["qwen3-235b-a22b", "nemotron-ultra-253b"]
+  }
+}

@@ -25,9 +25,6 @@
     cursor:pointer;
     display:none;
 }
-#showInfoBtn{
-    display:none;
-}
 #live2d {
     width: 250px;
     height: 280px;
@@ -75,29 +72,6 @@
     display: flex; /* 使用flex布局 */
     justify-content: space-between; /* 两端对齐 */
     align-items: center; /* 垂直居中 */
-}
-.live_talk_input_name_body{
-    width:70px;
-    box-sizing:border-box;
-    height:24px;
-    border: 2px solid rgb(223, 179, 241);
-    border-radius: 5px;
-    background-color: rgba(74, 59, 114,0.9);
-    margin-bottom:3px;
-}
-.live_talk_name{
-    background-color:transparent;
-    border:0px;
-    margin:0;
-    width:66px;
-    height:20px;
-    line-height:20px;
-    text-align:center;
-    font-size:12px;
-    color:#fff;
-    outline:none;
-    box-sizing:border-box;
-    padding:0 3px;
 }
 .live_talk_talk{
     background-color:transparent;

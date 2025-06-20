@@ -67,7 +67,6 @@ window.Live2DChat = (function() {
         $('#talk_send').off('click').on('click', function(e) {
             console.log('发送按钮被点击');
             sendMessage();
-            // 阻止事件冒泡，确保不会触发隐藏聊天框
             e.stopPropagation();
         });
         

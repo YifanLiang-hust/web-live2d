@@ -1,8 +1,14 @@
-// OpenRouter API 服务封装
-
 const openRouterService = {
   // API 密钥
-  apiKey: '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',
+  apiKey: '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',
+  
+  // 模型配置
+  modelConfig: {
+    currentModel: null,
+    allModels: [],
+    defaultModel: '',
+    categories: {}
+  },
   
   // 对话历史记录
   conversationHistory: [
@@ -14,6 +20,78 @@ const openRouterService = {
 
   // 对话历史上下文长度限制
   maxHistoryLength: 10,
+
+  // 初始化方法，加载模型配置
+  async initialize() {
+    try {
+      const response = await fetch('/src/llm.json');
+      if (!response.ok) {
+        throw new Error(`Failed to load models: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      this.modelConfig.allModels = data.models;
+      this.modelConfig.defaultModel = data.defaultModel;
+      this.modelConfig.categories = data.categories;
+      
+      // 设置默认模型
+      this.setModel(this.modelConfig.defaultModel);
+      
+      console.log("模型配置加载成功，当前使用模型：", this.modelConfig.currentModel);
+      return true;
+    } catch (error) {
+      console.error("加载模型配置失败:", error);
+      // 设置一个默认模型以防配置加载失败
+      this.setModel("qwen/qwen2.5-vl-72b-instruct:free")
+      return false;
+    }
+  },
+  
+  // 设置当前使用的模型
+  setModel(modelNameOrId) {
+    if (!modelNameOrId) {
+      console.error("无效的模型名称或ID");
+      return false;
+    }
+    
+    // 检查是否直接提供了完整的模型名称
+    if (modelNameOrId.includes('/')) {
+      this.modelConfig.currentModel = modelNameOrId;
+      return true;
+    }
+    
+    // 通过ID查找模型
+    const model = this.modelConfig.allModels.find(m => m.id === modelNameOrId);
+    if (model) {
+      this.modelConfig.currentModel = model.name;
+      console.log(`已切换到模型: ${model.description} (${model.name})`);
+      return true;
+    }
+    
+    console.error(`未找到ID为 "${modelNameOrId}" 的模型`);
+    return false;
+  },
+  
+  // 获取当前模型名称
+  getCurrentModel() {
+    return this.modelConfig.currentModel || this.modelConfig.defaultModel;
+  },
+  
+  // 获取指定分类的模型列表
+  getModelsByCategory(category) {
+    if (!category || !this.modelConfig.categories[category]) {
+      return [];
+    }
+    
+    return this.modelConfig.categories[category].map(id => {
+      return this.modelConfig.allModels.find(m => m.id === id);
+    }).filter(Boolean);
+  },
+  
+  // 获取所有可用模型
+  getAllModels() {
+    return this.modelConfig.allModels;
+  },
 
   // 清空对话历史，只保留系统提示
   resetConversation() {
@@ -53,9 +131,12 @@ const openRouterService = {
         setTimeout(() => reject(new Error('请求超时')), 8000)
       );
       
+      // 确保已有当前模型设置
+      const modelName = this.getCurrentModel();
+      
       // 准备请求体数据，使用完整的对话历史
       const requestBody = {
-        model: 'qwen/qwen3-30b-a3b:free',
+        model: modelName,
         messages: [...this.conversationHistory], // 使用对话历史记录
         max_tokens: 800
       };
@@ -190,3 +271,14 @@ const openRouterService = {
     }
   }
 };
+
+// 页面加载完成后初始化模型配置
+document.addEventListener('DOMContentLoaded', () => {
+  openRouterService.initialize().then(success => {
+    if (success) {
+      console.log('模型配置加载成功');
+    } else {
+      console.warn('使用默认模型配置');
+    }
+  });
+});

@@ -45,6 +45,7 @@ yarn-error.log*
 
 # 废弃的代码
 /src/js/old
+/src/js/backup
 /src/js/video-player.js
 /src/css/video-player.css
 /src/video/

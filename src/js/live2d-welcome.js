@@ -7,6 +7,16 @@
 window.Welcome = (function() {
     // 私有变量
     let sleepTimer_ = null;
+    let hitFlag = false; // 内部hitFlag变量，不再从外部传入
+    let showMessageFn = null; // 存储消息显示函数
+    
+    /**
+     * 重置对话状态
+     * 内部函数，不再需要从外部传入
+     */
+    function talkValTimer() {
+        $('#live_talk').val('1');
+    }
     
     /**
      * 根据当前时间生成问候语
@@ -23,7 +33,7 @@ window.Welcome = (function() {
         } else if (now > 11 && now <= 14) {
             return '中午了，工作了一个上午，现在是午餐时间！';
         } else if (now > 14 && now <= 17) {
-            return '午后很容易犯困呢，今天的运动目标完成了吗？';
+            return '午后很容易犯困呢，今天的学习目标完成了吗？';
         } else if (now > 17 && now <= 19) {
             return '傍晚了！窗外夕阳的景色很美丽呢，最美不过夕阳红~~';
         } else if (now > 19 && now <= 21) {
@@ -37,75 +47,60 @@ window.Welcome = (function() {
     
     /**
      * 显示初始问候语
-     * @param {function} showMessageFn - 显示消息的函数
+     * @param {function} messageFn - 显示消息的函数
      */
-    function showWelcome(showMessageFn) {
-        if (typeof showMessageFn !== 'function') {
+    function showWelcome(messageFn) {
+        if (typeof messageFn !== 'function') {
             console.error('显示消息的函数未提供');
             return;
         }
         
         let text = getTimeGreeting();
-        showMessageFn(text, 12000);
+        messageFn(text, 12000);
+    }
+    
+    /**
+     * 处理窗口失去焦点事件
+     */
+    function handleBlur() {
+        console.log("窗口失去焦点，设置休眠状态");
+        sessionStorage.setItem("Sleepy", "1");
+    }
+    
+    /**
+     * 处理窗口获得焦点事件
+     */
+    function handleFocus() {
+        if(sessionStorage.getItem("Sleepy") === "1") {
+            sessionStorage.removeItem("Sleepy");
+            console.log("窗口获得焦点，清除休眠状态");
+            // 如果之前在休眠，则显示欢迎回来的消息
+            if (showMessageFn) {
+                checkSleep();
+            }
+        }
+    }
+    
+    /**
+     * 初始化窗口焦点事件监听
+     */
+    function initWindowEvents() {
+        console.log("初始化窗口焦点监听...");
+        $(window).blur(handleBlur);
+        $(window).focus(handleFocus);
     }
     
     /**
      * 检查睡眠状态
-     * @param {function} showMessageFn - 显示消息的函数
-     * @param {function} talkValTimerFn - 重置对话计时器的函数
+     * 不再需要参数，使用模块内存储的函数
      */
-    function checkSleep(showMessageFn, talkValTimerFn) {
-        if (typeof showMessageFn !== 'function' || typeof talkValTimerFn !== 'function') {
-            console.error('必要的函数未提供');
-            return;
-        }
-        
+    function checkSleep() {
         var sleepStatu = sessionStorage.getItem("Sleepy");
         if (sleepStatu !== '1') {
-            talkValTimerFn();
-            showMessageFn('你回来啦~休息的怎么样！', 0);
+            talkValTimer();
+            showMessageFn('你回来啦~休息的怎么样！休息好养足精力才能更好地学习呀！', 0);
             clearInterval(sleepTimer_);
             sleepTimer_ = null;
-        }
-    }
-    
-    /**
-     * 显示随机提示消息
-     * @param {function} showMessageFn - 显示消息的函数
-     * @param {function} hideMessageFn - 隐藏消息的函数
-     * @param {function} talkValTimerFn - 重置对话计时器的函数
-     * @param {boolean} AITalkFlag - AI是否正在对话的标志
-     */
-    function showQuote(showMessageFn, hideMessageFn, talkValTimerFn, AITalkFlag) {
-        if (typeof showMessageFn !== 'function' || 
-            typeof hideMessageFn !== 'function' || 
-            typeof talkValTimerFn !== 'function') {
-            console.error('必要的函数未提供');
-            return;
-        }
-        
-        if (sessionStorage.getItem("Sleepy") !== "1") {
-            if (!AITalkFlag) {
-                const backupMessages = [
-                    '你学会了吗？有什么问题可以问我！',
-                    '学习需要耐心和毅力，加油！',
-                    '多做练习才能掌握知识点哦！',
-                    '遇到困难不要放弃，一起解决它！',
-                    '需要我解答任何疑问吗？',
-                    '汉赋小助手随时为你服务！',
-                    '学习需要踏实的态度！'
-                ];
-                const randomMsg = backupMessages[Math.floor(Math.random() * backupMessages.length)];
-                talkValTimerFn();
-                showMessageFn(randomMsg, 0);
-            }
-        } else {
-            hideMessageFn(0);
-            if (sleepTimer_ == null) {
-                sleepTimer_ = setInterval(function() {
-                    checkSleep(showMessageFn, talkValTimerFn);
-                }, 200);
-            }
         }
     }
     
@@ -148,54 +143,45 @@ window.Welcome = (function() {
     /**
      * 初始化交互提示功能，绑定页面元素事件
      * @param {string} messagePath - 消息配置文件路径
-     * @param {function} showMessageFn - 显示消息的函数
-     * @param {function} talkValTimerFn - 重置对话计时器的函数
-     * @param {object} hitFlagRef - 包含hitFlag变量引用的对象
+     * @param {function} messageFn - 显示消息的函数
      */
-    function initTips(messagePath, showMessageFn, talkValTimerFn, hitFlagRef) {
-        if (!messagePath || typeof showMessageFn !== 'function' || typeof talkValTimerFn !== 'function') {
+    function initTips(messagePath, messageFn) {
+        if (!messagePath || typeof messageFn !== 'function') {
             console.error('初始化Tips所需参数不完整');
             return;
         }
         
+        // 存储函数以供后续使用
+        showMessageFn = messageFn;
+        
         // 确保String原型已扩展
         extendStringPrototype();
+        
+        // 初始化窗口焦点事件监听
+        initWindowEvents();
         
         $.ajax({
             cache: true,
             url: messagePath + 'message.json',
             dataType: "json",
             success: function (result) {
-                // 绑定鼠标悬停事件
-                $.each(result.mouseover, function (index, tips) {
-                    $(tips.selector).mouseover(function () {
-                        var text = tips.text;
-                        if (Array.isArray(tips.text)) {
-                            text = tips.text[Math.floor(Math.random() * tips.text.length + 1) - 1];
-                        }
-                        text = text.renderTip({text: $(this).text()});
-                        showMessageFn(text, 3000);
-                        talkValTimerFn();
-                    });
-                });
-                
                 // 绑定点击事件
                 $.each(result.click, function (index, tips) {
                     $(tips.selector).click(function () {
-                        if (hitFlagRef.hitFlag) {
+                        if (hitFlag) {
                             return false;
                         }
-                        hitFlagRef.hitFlag = true;
+                        hitFlag = true;
                         setTimeout(function() {
-                            hitFlagRef.hitFlag = false;
-                        }, 8000);
+                            hitFlag = false;
+                        }, 1000);
                         
                         var text = tips.text;
                         if (Array.isArray(tips.text)) {
                             text = tips.text[Math.floor(Math.random() * tips.text.length + 1) - 1];
                         }
                         text = text.renderTip({text: $(this).text()});
-                        showMessageFn(text, 3000);
+                        messageFn(text, 1000);
                     });
                 });
             },
@@ -209,9 +195,8 @@ window.Welcome = (function() {
     return {
         showWelcome: showWelcome,
         checkSleep: checkSleep,
-        showQuote: showQuote,
         getTimeGreeting: getTimeGreeting,
         renderTip: renderTip,
-        initTips: initTips
+        initTips: initTips,
     };
 })();
