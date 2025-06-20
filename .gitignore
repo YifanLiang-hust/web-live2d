@@ -47,3 +47,4 @@ yarn-error.log*
 /src/js/old
 /src/js/video-player.js
 /src/css/video-player.css
+/src/video/
